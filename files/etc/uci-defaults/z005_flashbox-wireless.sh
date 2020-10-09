@@ -93,7 +93,12 @@ uci set wireless.default_radio0.key="$_password_24"
 if [ "$(is_5ghz_capable)" == "1" ]
 then
 	uci set wireless.radio1.txpower="30"
-	uci set wireless.radio1.channel="$_channel_50"
+	if [ "$IS_REALTEK" ]
+	then
+		uci set wireless.radio1.channel="40"
+	else
+		uci set wireless.radio1.channel="$_channel_50"
+	fi
 	[ "$_channel_50" == "auto" ] && uci set wireless.radio1.channels="36 40 44 153 157 161"
 	uci set wireless.radio1.country="BR"
 	uci set wireless.radio1.htmode="$_htmode_50"
