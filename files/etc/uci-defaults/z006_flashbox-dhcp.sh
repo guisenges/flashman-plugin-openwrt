@@ -10,7 +10,7 @@ then
 fi
 
 uci add_list dhcp.@dnsmasq[0].interface='lan'
-uci set dhcp.lan.leasetime="1h"
+uci set dhcp.lan.leasetime="48h"
 
 # Calculate DHCP start and limit
 _ipcalc_res="$(/bin/ipcalc.sh $(get_lan_subnet) $(get_lan_netmask) 1 255)"
@@ -26,7 +26,7 @@ uci set dhcp.lan.force='1'
 uci set dhcp.dmz=dhcp
 uci set dhcp.dmz.interface='dmz'
 uci set dhcp.dmz.dynamicdhcp='0'
-uci set dhcp.dmz.leasetime='1h'
+uci set dhcp.dmz.leasetime='48h'
 uci set dhcp.dmz.force='1'
 
 if [ "$FLM_DHCP_NOPROXY" == "1" ]
